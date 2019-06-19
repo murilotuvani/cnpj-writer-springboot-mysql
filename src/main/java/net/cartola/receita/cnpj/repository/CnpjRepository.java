@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import net.cartola.receita.cnpj.model.Cnpj;
+import net.cartola.receita.cnpj.model.CnpjDocumento;
 
-public interface CnpjRepository extends CrudRepository<Cnpj, Long> {
+public interface CnpjRepository extends CrudRepository<CnpjDocumento, Long> {
 	
-	public Cnpj findByCnpj(long cnpj);
-    public List<Cnpj> findByRazaoSocial(String razaoSocial);
-    public List<Cnpj> findByCnae(int cnae);
-    public List<Cnpj> findByCep(int cep);
-    public List<Cnpj> findByUf(String uf);
-    public List<Cnpj> findByCodigoMunicipio(int codigoMunicipio);
+	public CnpjDocumento findByCnpj(long cnpj);
+    public List<CnpjDocumento> findByRazaoSocial(String razaoSocial);
+    public List<CnpjDocumento> findByCnae(int cnae);
+    public List<CnpjDocumento> findByCep(int cep);
+    public List<CnpjDocumento> findByUf(String uf);
+    public List<CnpjDocumento> findByCodigoMunicipio(int codigoMunicipio);
 
 }

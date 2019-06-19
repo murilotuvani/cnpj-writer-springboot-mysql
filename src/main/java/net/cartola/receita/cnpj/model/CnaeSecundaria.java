@@ -20,7 +20,7 @@ public class CnaeSecundaria implements Serializable {
 	public Long id;
 	@ManyToOne
 	@JoinColumn(name="cnpj_id")
-	private Cnpj cnpj;
+	private CnpjDocumento cnpjDocumento;
 	private long cnpjEmpresa;
     private int cnaeSecundaria;
 
@@ -32,12 +32,15 @@ public class CnaeSecundaria implements Serializable {
 		this.id = id;
 	}
 
-	public Cnpj getCnpj() {
-		return cnpj;
+	public CnpjDocumento getCnpjDocumento() {
+		return cnpjDocumento;
 	}
 
-	public void setCnpj(Cnpj cnpj) {
-		this.cnpj = cnpj;
+	/**
+	 * @param cnpj
+	 */
+	public void setCnpjDocumento(CnpjDocumento cnpj) {
+		this.cnpjDocumento = cnpj;
 	}
 
 	public long getCnpjEmpresa() {

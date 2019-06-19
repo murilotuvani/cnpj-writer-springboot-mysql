@@ -15,12 +15,10 @@ import javax.persistence.OneToMany;
 import org.springframework.data.annotation.Id;
 
 @Entity
-public class Cnpj implements Serializable {
+public class CnpjDocumento implements Serializable {
 
 	private static final long serialVersionUID = 2186005634847048460L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private long cnpj;
 	private UnidadeTipo unidadeTipo = UnidadeTipo.MATRIZ;
@@ -61,11 +59,11 @@ public class Cnpj implements Serializable {
 	private String situacaoEspecial;
 	private Date dataSiutacaoEspecial;
 	
-	@OneToMany(mappedBy = "cnpj", cascade = CascadeType.PERSIST)
 	private List<CnaeSecundaria> cnaesSecundarios;
-	@OneToMany(mappedBy = "cnpj", cascade = CascadeType.PERSIST)
 	private List<Socio> socios;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -376,8 +374,9 @@ public class Cnpj implements Serializable {
 
 	public void setDataSiutacaoEspecial(Date dataSiutacaoEspecial) {
 		this.dataSiutacaoEspecial = dataSiutacaoEspecial;
-	}	
+	}
 	
+	@OneToMany(mappedBy = "cnpjDocumento", cascade = CascadeType.PERSIST)
 	public List<CnaeSecundaria> getCnaesSecundarios() {
 		return cnaesSecundarios;
 	}
@@ -386,6 +385,7 @@ public class Cnpj implements Serializable {
 		this.cnaesSecundarios = cnaesSecundarios;
 	}
 
+	@OneToMany(mappedBy = "cnpjDocumento", cascade = CascadeType.PERSIST)
 	public List<Socio> getSocios() {
 		return socios;
 	}
@@ -396,7 +396,7 @@ public class Cnpj implements Serializable {
 
 	@Override
     public String toString() {
-        return "Cnpj{cnpj=" + cnpj + ", unidadeTipo=" + unidadeTipo + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", situacaoCadastral=" + situacaoCadastral + ", dataSituacaoCadastral=" + dataSituacaoCadastral + ", motivoSituacaoCadastral=" + motivoSituacaoCadastral + ", cidadeExteriorNome=" + cidadeExteriorNome + ", paisCodigo=" + paisCodigo + ", paisNome=" + paisNome + ", codigoNaturezaJuridica=" + codigoNaturezaJuridica + ", inicioAtividade=" + inicioAtividade + ", cnae=" + cnae + ", tipoLogradouro=" + tipoLogradouro + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", uf=" + uf + ", codigoMunicipio=" + codigoMunicipio + ", municipio=" + municipio + ", ddd1=" + ddd1 + ", telefone1=" + telefone1 + ", ddd2=" + ddd2 + ", telefone2=" + telefone2 + ", dddFax=" + dddFax + ", fax=" + fax + '}';
+        return "CnpjDocumento{cnpj=" + cnpj + ", unidadeTipo=" + unidadeTipo + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia + ", situacaoCadastral=" + situacaoCadastral + ", dataSituacaoCadastral=" + dataSituacaoCadastral + ", motivoSituacaoCadastral=" + motivoSituacaoCadastral + ", cidadeExteriorNome=" + cidadeExteriorNome + ", paisCodigo=" + paisCodigo + ", paisNome=" + paisNome + ", codigoNaturezaJuridica=" + codigoNaturezaJuridica + ", inicioAtividade=" + inicioAtividade + ", cnae=" + cnae + ", tipoLogradouro=" + tipoLogradouro + ", logradouro=" + logradouro + ", numero=" + numero + ", complemento=" + complemento + ", bairro=" + bairro + ", cep=" + cep + ", uf=" + uf + ", codigoMunicipio=" + codigoMunicipio + ", municipio=" + municipio + ", ddd1=" + ddd1 + ", telefone1=" + telefone1 + ", ddd2=" + ddd2 + ", telefone2=" + telefone2 + ", dddFax=" + dddFax + ", fax=" + fax + '}';
     }
 
 	public boolean addSocio(Socio socio) {
