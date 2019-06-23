@@ -2,28 +2,28 @@ package net.cartola.receita.cnpj.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class CnaeSecundaria implements Serializable {
 
 	private static final long serialVersionUID = 3522164548737116198L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
-	@ManyToOne
-	@JoinColumn(name="cnpj_id")
 	private CnpjDocumento cnpjDocumento;
 	private long cnpjEmpresa;
     private int cnaeSecundaria;
 
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="cnae_id")
     public Long getId() {
 		return id;
 	}
@@ -32,6 +32,8 @@ public class CnaeSecundaria implements Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne
+	@JoinColumn(name="cnpj_id")
 	public CnpjDocumento getCnpjDocumento() {
 		return cnpjDocumento;
 	}
