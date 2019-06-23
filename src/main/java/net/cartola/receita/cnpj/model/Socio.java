@@ -4,13 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 
 @Entity
 public class Socio implements Serializable {
@@ -34,7 +35,7 @@ public class Socio implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="socio_id")
+	@Column(name = "socio_id")
 	public Long getId() {
 		return id;
 	}
@@ -44,7 +45,7 @@ public class Socio implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "cnpj_id")
+	@JoinColumn(name = "cnpj_id", foreignKey = @ForeignKey(name="fky_soci_cnpj", value = ConstraintMode.CONSTRAINT))
 	public CnpjDocumento getCnpjDocumento() {
 		return cnpjDocumento;
 	}

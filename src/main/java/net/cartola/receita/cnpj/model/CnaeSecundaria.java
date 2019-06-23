@@ -3,7 +3,9 @@ package net.cartola.receita.cnpj.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +35,7 @@ public class CnaeSecundaria implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="cnpj_id")
+	@JoinColumn(name = "cnpj_id", foreignKey = @ForeignKey(name="fky_cnae_cnpj", value = ConstraintMode.CONSTRAINT))
 	public CnpjDocumento getCnpjDocumento() {
 		return cnpjDocumento;
 	}
