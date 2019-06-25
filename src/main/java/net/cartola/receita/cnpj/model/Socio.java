@@ -3,25 +3,23 @@ package net.cartola.receita.cnpj.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Socio implements Serializable {
 
 	private static final long serialVersionUID = -1894235556414136929L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
-	@JoinColumn(name = "cnpj_id")
-	private Cnpj cnpj;
+	private CnpjDocumento cnpjDocumento;
 	private long cnpjEmpresa;
 	private SocioIdentificador identificador;
 	private String nome;
@@ -35,6 +33,9 @@ public class Socio implements Serializable {
 	private String nomeRepresentanteLegal;
 	private String codigoQualificacaoRepresentanteLegal;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "socio_id")
 	public Long getId() {
 		return id;
 	}
@@ -43,12 +44,14 @@ public class Socio implements Serializable {
 		this.id = id;
 	}
 
-	public Cnpj getCnpj() {
-		return cnpj;
+	@ManyToOne
+	@JoinColumn(name = "cnpj_id", foreignKey = @ForeignKey(name="fky_soci_cnpj", value = ConstraintMode.CONSTRAINT))
+	public CnpjDocumento getCnpjDocumento() {
+		return cnpjDocumento;
 	}
 
-	public void setCnpj(Cnpj cnpj) {
-		this.cnpj = cnpj;
+	public void setCnpjDocumento(CnpjDocumento cnpj) {
+		this.cnpjDocumento = cnpj;
 	}
 
 	public long getCnpjEmpresa() {
