@@ -14,10 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 
 @Entity
-@Table(name="cnpj")
+@Table(name = "cnpj", uniqueConstraints = { @UniqueConstraint(columnNames = { "cnpj" }, name = "unk_cnpj") })
 public class CnpjDocumento implements Serializable {
 
 	private static final long serialVersionUID = 2186005634847048460L;
